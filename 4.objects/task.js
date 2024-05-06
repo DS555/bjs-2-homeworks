@@ -10,30 +10,32 @@ Student.prototype.setSubject = function (subjectName) {
 };
 
 Student.prototype.addMarks = function (...marksToAdd) {
-  if (this.hasOwnProperty("marks") === true) {
+  if (!this.hasOwnProperty("marks") === true) {
     this.marks = (this.marks.map((i) => i), marksToAdd);
-  }
+  };
+  if (this.hasOwnProperty("marks")) {
+    this.marks = [].concat(this.marks, marksToAdd);
+  };
 };
 
 Student.prototype.exclude = function (reason) {
   this.excluded = reason;
-  if (this.hasOwnProperty("excluded") === true) {
-    delete this.marks;
-    delete this.subject;
-  }
+  delete this.marks;
+  delete this.subject;
+  
 };
 
 Student.prototype.getAverage = function () {
-  if (this.hasOwnProperty("marks") !== true) {
+  if (!this.hasOwnProperty("marks")) {
     return 0;
-  }
-  this.average = this.marks.reduce((acc, item, index, arr) => {
+  };
+  return this.marks.reduce((acc, item, index, arr) => {
     acc += item;
     if (index === arr.length - 1) {
       return acc / arr.length;
     }
-    return acc;
-  }, 0);
+      return acc;
+    }, 0)
 };
 
 let student1 = new Student("Василиса", "женский", 19);
