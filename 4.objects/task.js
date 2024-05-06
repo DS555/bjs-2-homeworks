@@ -20,9 +20,10 @@ Student.prototype.addMarks = function (...marksToAdd) {
 
 Student.prototype.exclude = function (reason) {
   this.excluded = reason;
+  if (this.hasOwnProperty("excluded") === true) {
   delete this.marks;
   delete this.subject;
-  
+  }
 };
 
 Student.prototype.getAverage = function () {
