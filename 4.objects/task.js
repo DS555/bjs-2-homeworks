@@ -10,9 +10,6 @@ Student.prototype.setSubject = function (subjectName) {
 };
 
 Student.prototype.addMarks = function (...marksToAdd) {
-  if (!this.hasOwnProperty("marks") === true) {
-    this.marks = (this.marks.map((i) => i), marksToAdd);
-  };
   if (this.hasOwnProperty("marks")) {
     this.marks = [].concat(this.marks, marksToAdd);
   };
